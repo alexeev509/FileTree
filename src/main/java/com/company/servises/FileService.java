@@ -13,8 +13,6 @@ public class FileService {
     private FileRepository fileRepository;
 
     public List<FileEntity> findAll(){
-        System.out.println("All files in database:");
-        System.out.println(fileRepository.getFileEntitiesByParentId(1l));
         System.out.println(fileRepository.findAll());
         return fileRepository.findAll();
     }

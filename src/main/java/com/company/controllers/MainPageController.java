@@ -1,10 +1,14 @@
 package com.company.controllers;
 
+import com.company.entity.FileEntity;
 import com.company.servises.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class MainPageController {
@@ -18,9 +22,9 @@ public class MainPageController {
         return "MainPage";
     }
 
-    @RequestMapping(value = "/getAll")
+    @RequestMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getAllFiles(){
-        return fileService.findAll().toString();
+    public List<FileEntity> getAllFiles(){
+        return fileService.findAll();
     }
 }

@@ -58,6 +58,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -104,7 +112,7 @@
                             <properties>
                                 <!--important reference-->
                                 <!--https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html-->
-                                <!--https://stackoverflow.com/questions/17194226/cargo-maven2-plugin-change-target-filename-on-remote-type-->
+                                <!--https://stackoverflow.com/questions/17194226/cargo-maven2-plugin-change-target-text-on-remote-type-->
                                 <context>/</context>
                             </properties>
                         </deployable>

@@ -20,17 +20,18 @@ public class ViewConfiguration implements WebMvcConfigurer {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/style/**")
-                .addResourceLocations("resources/css/")
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
-                .resourceChain(false)  // ???
-                .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
+                .addResourceLocations("resources/css/");
+//                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
+//                .resourceChain(false)  // ???
+//                .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
 
 
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("resources/js/")
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
-                .resourceChain(true)
-                .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
+                .setCachePeriod(0);
+//                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
+//                .resourceChain(false)
+//                .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
     }
 
     @Bean
@@ -39,19 +40,19 @@ public class ViewConfiguration implements WebMvcConfigurer {
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateResolver.setCacheable(true);
+        templateResolver.setCacheable(false);
         return templateResolver;
     }
 
     @Bean
-    public SpringTemplateEngine templateEngine(){
+    public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
     }
 
     @Bean
-    public ThymeleafViewResolver viewResolver(){
+    public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         // NOTE 'order' and 'viewNames' are optional

@@ -12,27 +12,27 @@ public class FileEntity {
     @GeneratedValue(generator = "increment")
     @Column(name = "id")
     private long id;
-    @Column(name = "isdirectory")
-    private boolean isDirectory;
+    @Column(name = "type")
+    private String type;
     @Column(name = "filename")
-    private String filename;
+    private String text;
     @Column(name = "parentid")
-    private long parentId;
+    private long parent;
 
     @Override
     public String toString() {
         return "FileEntity{" +
                 "id=" + id +
-                ", isDirectory=" + isDirectory +
-                ", filename='" + filename + '\'' +
-                ", parentId=" + parentId +
+                ", type=" + type +
+                ", text='" + text + '\'' +
+                ", parent=" + parent +
                 '}';
     }
 
-    public FileEntity(boolean isDirectory, String filename, long parentId) {
-        this.isDirectory = isDirectory;
-        this.filename = filename;
-        this.parentId = parentId;
+    public FileEntity(String type, String filename, long parentId) {
+        this.type = type;
+        this.text = filename;
+        this.parent = parentId;
     }
 
     public long getId() {
@@ -43,27 +43,27 @@ public class FileEntity {
         this.id = id;
     }
 
-    public boolean isDirectory() {
-        return isDirectory;
+    public String getType() {
+        return type;
     }
 
-    public void setDirectory(boolean directory) {
-        isDirectory = directory;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getText() {
+        return text;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public long getParentId() {
-        return parentId;
+    public long getParent() {
+        return parent;
     }
 
-    public void setParentId(long parentId) {
-        this.parentId = parentId;
+    public void setParent(long parent) {
+        this.parent = parent;
     }
 }
