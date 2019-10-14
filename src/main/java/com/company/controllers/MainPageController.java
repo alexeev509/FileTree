@@ -5,7 +5,9 @@ import com.company.servises.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -26,5 +28,12 @@ public class MainPageController {
     @ResponseBody
     public List<FileEntity> getAllFiles(){
         return fileService.findAll();
+    }
+
+    @RequestMapping(value = "/add",
+            method = RequestMethod.POST)
+    @ResponseBody
+    public void addNewFile(@RequestBody FileEntity fileEntity) {
+        fileService.addNewFile(fileEntity);
     }
 }

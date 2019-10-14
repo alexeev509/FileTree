@@ -4,8 +4,9 @@
 // };
 
 var xhr = new XMLHttpRequest();
+var xhr2 = new XMLHttpRequest();
 var data;
-
+var last_id = -1;
 window.onload = function () {
     xhr.open('GET', '/getAll', false);
     xhr.send();
@@ -18,6 +19,7 @@ xhr.onreadystatechange = function () {
     }
 };
 
+//Better to sort on server by id!!
 function normalizeData(responseTxt) {
     data = JSON.parse(responseTxt);
     for (var i = 0; i < data.length; i++) {
@@ -25,10 +27,25 @@ function normalizeData(responseTxt) {
         if (data[i].parent == -1) {
             data[i].parent = "#";
         }
+        //find and set last id
+        if (data[i].id > last_id) {
+            last_id = data[i].id;
+        }
     }
     console.log("data after replacing: " + data);
 }
 
+function sendRequestForCreatingNewFileInDataBase(data) {
+    xhr2.open('POST', '/add', true);
+    xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8')
+    var obj = {
+        "id": data.node.id,
+        "type": data.node.type,
+        "text": data.node.text,
+        "parent": data.node.parent
+    };
+    xhr2.send(JSON.stringify(obj));
+}
 
 function createJSTree(jsondata) {
 
@@ -40,8 +57,10 @@ function createJSTree(jsondata) {
     //
     //
     $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
-        data.node.id=
-        console.log(data.node.id);
+        last_id++;
+        $('#SimpleJSTree').jstree(true).set_id(data.node, last_id);
+        console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
+        sendRequestForCreatingNewFileInDataBase(data);
     });
 
     $('#SimpleJSTree').jstree({
