@@ -25,7 +25,6 @@ function normalizeData(responseTxt) {
         if (data[i].parent == -1) {
             data[i].parent = "#";
         }
-        console.log(data[i].parent);
     }
     console.log("data after replacing: " + data);
 }
@@ -40,9 +39,10 @@ function createJSTree(jsondata) {
     // });
     //
     //
-    // $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
-    //     console.log("The created nodes are:" + data);
-    // });
+    $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
+        data.node.id=
+        console.log(data.node.id);
+    });
 
     $('#SimpleJSTree').jstree({
         "core": {
@@ -97,7 +97,7 @@ function createJSTree(jsondata) {
                                 "seperator_after": false,
                                 "label": "Folder",
                                 action: function (obj) {
-                                    $node = tree.create_node($node, {text: 'New Folder', type: 'default'});
+                                    $node = tree.create_node($node, {text: 'New Folder', type: 'folder'});
                                     tree.deselect_all();
                                     tree.select_node($node);
                                 }
