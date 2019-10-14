@@ -35,14 +35,38 @@ function normalizeData(responseTxt) {
     console.log("data after replacing: " + data);
 }
 
+function getParentId(data) {
+    var parentTd;
+    if (data.node.parent == "#") {
+        parentTd = -1;
+    } else {
+        parentTd = data.node.parent;
+    }
+    return parentTd;
+}
+
 function sendRequestForCreatingNewFileInDataBase(data) {
+    var parentTd = getParentId(data);
     xhr2.open('POST', '/add', true);
-    xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8')
+    xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
     var obj = {
         "id": data.node.id,
         "type": data.node.type,
         "text": data.node.text,
-        "parent": data.node.parent
+        "parent": parentTd
+    };
+    xhr2.send(JSON.stringify(obj));
+}
+
+function sendRequestForRenamingFileInDataBase(data) {
+    var parentTd = getParentId(data);
+    xhr2.open('POST', '/edit', true);
+    xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
+    var obj = {
+        "id": data.node.id,
+        "type": data.node.type,
+        "text": data.node.text,
+        "parent": parentTd
     };
     xhr2.send(JSON.stringify(obj));
 }
@@ -61,6 +85,11 @@ function createJSTree(jsondata) {
         $('#SimpleJSTree').jstree(true).set_id(data.node, last_id);
         console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
         sendRequestForCreatingNewFileInDataBase(data);
+    });
+
+    $('#SimpleJSTree').on("rename_node.jstree", function (e, data) {
+        console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
+        sendRequestForRenamingFileInDataBase(data);
     });
 
     $('#SimpleJSTree').jstree({

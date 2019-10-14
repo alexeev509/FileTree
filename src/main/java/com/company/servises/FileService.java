@@ -21,4 +21,9 @@ public class FileService {
         System.out.println(fileEntity);
         fileRepository.save(fileEntity);
     }
+
+    public void editFile(FileEntity fileEntity) {
+        System.out.println(fileEntity);
+        fileRepository.save(fileEntity);
+    }
 }

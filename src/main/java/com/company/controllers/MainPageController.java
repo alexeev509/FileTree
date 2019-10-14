@@ -36,4 +36,11 @@ public class MainPageController {
     public void addNewFile(@RequestBody FileEntity fileEntity) {
         fileService.addNewFile(fileEntity);
     }
+
+    @RequestMapping(value = "/edit",
+            method = RequestMethod.POST)
+    @ResponseBody
+    public void editFile(@RequestBody FileEntity fileEntity) {
+        fileService.editFile(fileEntity);
+    }
 }
