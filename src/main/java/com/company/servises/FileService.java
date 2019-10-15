@@ -12,7 +12,7 @@ public class FileService {
     @Autowired
     private FileRepository fileRepository;
 
-    public List<FileEntity> findAll(){
+    public List<FileEntity> findAll() {
         System.out.println(fileRepository.findAll());
         return fileRepository.findAll();
     }
@@ -25,5 +25,10 @@ public class FileService {
     public void editFile(FileEntity fileEntity) {
         System.out.println(fileEntity);
         fileRepository.save(fileEntity);
+    }
+
+    public void delete(FileEntity fileEntity) {
+        System.out.println(fileEntity);
+        fileRepository.deleteAllChildsOfTheCurrentNode(fileEntity.getId());
     }
 }

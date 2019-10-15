@@ -47,7 +47,8 @@ function getParentId(data) {
 
 function sendRequestForCreatingNewFileInDataBase(data) {
     var parentTd = getParentId(data);
-    xhr2.open('POST', '/add', true);
+    console.log(parentTd);
+    xhr2.open('POST', '/add', false);
     xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
     var obj = {
         "id": data.node.id,
@@ -61,6 +62,19 @@ function sendRequestForCreatingNewFileInDataBase(data) {
 function sendRequestForRenamingFileInDataBase(data) {
     var parentTd = getParentId(data);
     xhr2.open('POST', '/edit', true);
+    xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
+    var obj = {
+        "id": data.node.id,
+        "type": data.node.type,
+        "text": data.node.text,
+        "parent": parentTd
+    };
+    xhr2.send(JSON.stringify(obj));
+}
+
+function sendRequestForDeletingFileInDataBase(data) {
+    var parentTd = getParentId(data);
+    xhr2.open('POST', '/delete', true);
     xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
     var obj = {
         "id": data.node.id,
@@ -90,6 +104,11 @@ function createJSTree(jsondata) {
     $('#SimpleJSTree').on("rename_node.jstree", function (e, data) {
         console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
         sendRequestForRenamingFileInDataBase(data);
+    });
+
+    $('#SimpleJSTree').on("delete_node.jstree", function (e, data) {
+        console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
+        sendRequestForDeletingFileInDataBase(data);
     });
 
     $('#SimpleJSTree').jstree({

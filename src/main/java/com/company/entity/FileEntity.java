@@ -11,13 +11,13 @@ public class FileEntity {
     @Id
     @GeneratedValue(generator = "increment")
     @Column(name = "id")
-    private long id;
+    private int id;
     @Column(name = "type")
     private String type;
     @Column(name = "filename")
     private String text;
     @Column(name = "parentid")
-    private long parent;
+    private int parent;
 
     @Override
     public String toString() {
@@ -29,17 +29,12 @@ public class FileEntity {
                 '}';
     }
 
-    public FileEntity(String type, String filename, long parentId) {
-        this.type = type;
-        this.text = filename;
-        this.parent = parentId;
-    }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,11 +54,11 @@ public class FileEntity {
         this.text = text;
     }
 
-    public long getParent() {
+    public int getParent() {
         return parent;
     }
 
-    public void setParent(long parent) {
+    public void setParent(int parent) {
         this.parent = parent;
     }
 }

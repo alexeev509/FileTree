@@ -43,4 +43,11 @@ public class MainPageController {
     public void editFile(@RequestBody FileEntity fileEntity) {
         fileService.editFile(fileEntity);
     }
+
+    @RequestMapping(value = "/delete",
+            method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteFile(@RequestBody FileEntity fileEntity) {
+        fileService.delete(fileEntity);
+    }
 }
