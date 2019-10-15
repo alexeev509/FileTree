@@ -88,12 +88,14 @@ function sendRequestForDeletingFileInDataBase(data) {
 function createJSTree(jsondata) {
 
 
-    // $('#SimpleJSTree').on("changed.jstree", function (e, data) {
-    //     console.log("The selected nodes are:");
-    //     console.log(data.selected);
-    // });
-    //
-    //
+    $('#SimpleJSTree').on("open_node.jstree", function (e, data) {
+        data.instance.set_icon(data.node, "fa fa-spinner fa-spin");
+    });
+
+    $('#SimpleJSTree').on("after_open.jstree", function (e, data) {
+        data.instance.set_icon(data.node, "jstree-icon jstree-folder");
+    });
+
     $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
         last_id++;
         $('#SimpleJSTree').jstree(true).set_id(data.node, last_id);
@@ -120,6 +122,7 @@ function createJSTree(jsondata) {
         "core": {
             "check_callback": true,
             'data': jsondata,
+            'animation': 2000,
             "__init": function ($node) {
                 alert($node)
             },
@@ -136,7 +139,7 @@ function createJSTree(jsondata) {
                 "valid_children": []
             }
         },
-        "plugins": ["contextmenu", "types", "dnd"],
+        "plugins": ["contextmenu", "types", "dnd", ""],
         "contextmenu": {
             "items": function ($node) {
                 var tree = $("#SimpleJSTree").jstree(true);
