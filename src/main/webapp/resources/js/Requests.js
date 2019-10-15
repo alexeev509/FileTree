@@ -48,7 +48,7 @@ function getParentId(data) {
 function sendRequestForCreatingNewFileInDataBase(data) {
     var parentTd = getParentId(data);
     console.log(parentTd);
-    xhr2.open('POST', '/add', false);
+    xhr2.open('POST', '/add', true);
     xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
     var obj = {
         "id": data.node.id,
