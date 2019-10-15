@@ -59,7 +59,7 @@ function sendRequestForCreatingNewFileInDataBase(data) {
     xhr2.send(JSON.stringify(obj));
 }
 
-function sendRequestForRenamingFileInDataBase(data) {
+function sendRequestForEditingFileInDataBase(data) {
     var parentTd = getParentId(data);
     xhr2.open('POST', '/edit', true);
     xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
@@ -103,12 +103,17 @@ function createJSTree(jsondata) {
 
     $('#SimpleJSTree').on("rename_node.jstree", function (e, data) {
         console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
-        sendRequestForRenamingFileInDataBase(data);
+        sendRequestForEditingFileInDataBase(data);
     });
 
     $('#SimpleJSTree').on("delete_node.jstree", function (e, data) {
         console.log(data.node.id + " " + data.node.parent + " " + data.node.text + " " + data.node.type);
         sendRequestForDeletingFileInDataBase(data);
+    });
+
+    $('#SimpleJSTree').on("move_node.jstree", function (e, data) {
+        console.log("Drop node " + data.node.id + " to " + data.node.parent);
+        sendRequestForEditingFileInDataBase(data);
     });
 
     $('#SimpleJSTree').jstree({
@@ -127,10 +132,11 @@ function createJSTree(jsondata) {
                 "icon": "jstree-icon jstree-folder"
             },
             "file": {
-                "icon": "jstree-icon jstree-file"
+                "icon": "jstree-icon jstree-file",
+                "valid_children": []
             }
         },
-        "plugins": ["contextmenu", "types"],
+        "plugins": ["contextmenu", "types", "dnd"],
         "contextmenu": {
             "items": function ($node) {
                 var tree = $("#SimpleJSTree").jstree(true);
