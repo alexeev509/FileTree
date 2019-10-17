@@ -20,7 +20,6 @@ public class MainPageController {
 
     @RequestMapping(value = "/main")
     public String getMainPage(){
-        System.out.println("hello");
         return "MainPage";
     }
 
