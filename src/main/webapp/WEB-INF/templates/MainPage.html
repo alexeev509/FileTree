@@ -24,12 +24,20 @@
     <script src="js/Main.js"></script>
     <script src="js/Requests.js"></script>
     <script src="js/Tree.js"></script>
+    <script src="js/ButtonEvents.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Add new node</button>
-    <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Rename</button>
-    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete node from tree</button>
+    <button type="button" class="btn btn-success" onclick="createNewNode('New Folder','folder')"><i
+            class="fas fa-plus"></i> Add new folder
+    </button>
+    <button type="button" class="btn btn-success" onclick="createNewNode('New File','file')"><i class="fas fa-plus"></i>
+        Add new file
+    </button>
+    <button type="button" class="btn btn-warning" onclick="editNode()"><i class="fas fa-pencil-alt"></i> Rename</button>
+    <button type="button" class="btn btn-danger" onclick="remove()"><i class="fas fa-trash-alt"></i> Delete node from
+        tree
+    </button>
 </nav>
 
 <div id="SimpleJSTree"></div>
