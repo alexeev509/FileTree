@@ -13,22 +13,18 @@ public class FileService {
     private FileRepository fileRepository;
 
     public List<FileEntity> findAll() {
-        System.out.println(fileRepository.findAll());
         return fileRepository.findAll();
     }
 
     public void addNewFile(FileEntity fileEntity) {
-        System.out.println(fileEntity);
         fileRepository.save(fileEntity);
     }
 
     public void editFile(FileEntity fileEntity) {
-        System.out.println(fileEntity);
         fileRepository.save(fileEntity);
     }
 
     public void delete(FileEntity fileEntity) {
-        System.out.println(fileEntity);
         fileRepository.deleteAllChildsOfTheCurrentNode(fileEntity.getId());
     }
 }
