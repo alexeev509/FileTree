@@ -40,7 +40,9 @@ function createJSTree(jsondata) {
                                 "seperator_after": false,
                                 "label": "File",
                                 action: function (obj) {
+                                    last_id++;
                                     $node = tree.create_node($node, {
+                                        id: last_id,
                                         text: 'New File',
                                         type: 'file',
                                         icon: 'jstree-icon jstree-file'
@@ -54,7 +56,11 @@ function createJSTree(jsondata) {
                                 "seperator_after": false,
                                 "label": "Folder",
                                 action: function (obj) {
-                                    $node = tree.create_node($node, {text: 'New Folder', type: 'folder'});
+                                    last_id++;
+                                    $node = tree.create_node($node, {
+                                        id: last_id,
+                                        text: 'New Folder', type: 'folder'
+                                    });
                                     tree.deselect_all();
                                     tree.select_node($node);
                                 }
@@ -93,8 +99,6 @@ function createEventsForTree() {
     });
 
     $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
-        last_id++;
-        $('#SimpleJSTree').jstree(true).set_id(data.node, last_id);
         sendRequestForCreatingNewFileInDataBase(data);
     });
 

@@ -1,18 +1,18 @@
 function sendRequestForCreatingNewFileInDataBase(data) {
-    sentRequest('add', data);
+    sentRequest('add', data, false);
 }
 
 function sendRequestForEditingFileInDataBase(data) {
-    sentRequest('edit', data);
+    sentRequest('edit', data, true);
 }
 
 function sendRequestForDeletingFileInDataBase(data) {
-    sentRequest('delete', data);
+    sentRequest('delete', data, true);
 }
 
-function sentRequest(type, data) {
+function sentRequest(type, data, async) {
     var parentTd = getParentId(data);
-    xhr2.open('POST', '/' + type, true);
+    xhr2.open('POST', '/' + type, async);
     xhr2.setRequestHeader('Content-type', 'application/json;charset=utf-8');
     var obj = {
         "id": data.node.id,
