@@ -29,3 +29,11 @@ bd.url=jdbc:postgresql://ec2-46-137-113-157.eu-west-1.compute.amazonaws.com:5432
 bd.driver=org.postgresql.Driver<br>
 
 it will be work with my database in "heroku"
+<br>
+DEFAULT PROPERTIES ARE USING HEROKU DB!<br>
+
+<h1>Description</h1>
+This tree can do CRUD operations and you can move folders using drag and drop;<br>
+For CRUD operations you can use buttons or you can right click on the folder or file;<br>
+If your tree is empty you can click on button "Create" folder or file and you will see<br>
+root of the tree
