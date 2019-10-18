@@ -37,3 +37,7 @@ This tree can do CRUD operations and you can move folders using drag and drop;<b
 For CRUD operations you can use buttons or you can right click on the folder or file;<br>
 If your tree is empty you can click on button "Create" folder or file and you will see<br>
 root of the tree
+<br>
+Current folder or file has blue backgroung
+<br>
+When you are openning folder it has delay 2 seconds
