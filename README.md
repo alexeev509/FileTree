@@ -41,3 +41,10 @@ root of the tree
 Current folder or file has blue backgroung
 <br>
 When you are openning folder it has delay 2 seconds
+<br>
+It this application were used patterns:<br>
+1) MVC
+2) FrontController (DispatcherServlet)
+3) IoC
+4) Dependency Injection
+5) Singlton
