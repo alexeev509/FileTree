@@ -1,5 +1,6 @@
 var xhr = new XMLHttpRequest();
-var xhr2 = new XMLHttpRequest();
+var xhrDeleteAndEdit = new XMLHttpRequest();
+var xhrCreate = new XMLHttpRequest();
 var data;
 var last_id = -1;
 window.onload = function () {

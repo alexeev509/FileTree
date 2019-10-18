@@ -41,14 +41,15 @@ function createJSTree(jsondata) {
                                 "label": "File",
                                 action: function (obj) {
                                     last_id++;
-                                    $node = tree.create_node($node, {
-                                        id: last_id,
-                                        text: 'New File',
-                                        type: 'file',
-                                        icon: 'jstree-icon jstree-file'
-                                    });
-                                    tree.deselect_all();
-                                    tree.select_node($node);
+                                    var data = {
+                                        node: {
+                                            parent: $node.id,
+                                            id: last_id,
+                                            text: 'New File',
+                                            type: 'file'
+                                        }
+                                    };
+                                    sendRequestForCreatingNewFileInDataBase(data);
                                 }
                             },
                             "Folder": {
@@ -57,12 +58,15 @@ function createJSTree(jsondata) {
                                 "label": "Folder",
                                 action: function (obj) {
                                     last_id++;
-                                    $node = tree.create_node($node, {
-                                        id: last_id,
-                                        text: 'New Folder', type: 'folder'
-                                    });
-                                    tree.deselect_all();
-                                    tree.select_node($node);
+                                    var data = {
+                                        node: {
+                                            parent: $node.id,
+                                            id: last_id,
+                                            text: 'New Folder',
+                                            type: 'folder'
+                                        }
+                                    };
+                                    sendRequestForCreatingNewFileInDataBase(data);
                                 }
                             }
                         }
@@ -98,9 +102,6 @@ function createEventsForTree() {
         data.instance.set_icon(data.node, "jstree-icon jstree-folder");
     });
 
-    $('#SimpleJSTree').on("create_node.jstree", function (e, data) {
-        sendRequestForCreatingNewFileInDataBase(data);
-    });
 
     $('#SimpleJSTree').on("rename_node.jstree", function (e, data) {
         sendRequestForEditingFileInDataBase(data);

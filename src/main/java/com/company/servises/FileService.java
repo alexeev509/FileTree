@@ -16,8 +16,8 @@ public class FileService {
         return fileRepository.findAll();
     }
 
-    public void addNewFile(FileEntity fileEntity) {
-        fileRepository.save(fileEntity);
+    public FileEntity addNewFile(FileEntity fileEntity) {
+        return fileRepository.save(fileEntity);
     }
 
     public void editFile(FileEntity fileEntity) {

@@ -30,10 +30,10 @@ public class MainPageController {
     }
 
     @RequestMapping(value = "/add",
-            method = RequestMethod.POST)
+            method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void addNewFile(@RequestBody FileEntity fileEntity) {
-        fileService.addNewFile(fileEntity);
+    public FileEntity addNewFile(@RequestBody FileEntity fileEntity) {
+        return fileService.addNewFile(fileEntity);
     }
 
     @RequestMapping(value = "/edit",

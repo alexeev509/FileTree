@@ -3,13 +3,14 @@ function createNewNode(text, typeOfFile) {
     var tree = $("#SimpleJSTree").jstree();
     var currentNode = tree.get_selected(true)[0];
     last_id++;
+    var data;
     if (currentNode == undefined) {
-        tree.create_node('#', {id: last_id, text: text, type: typeOfFile});
-    } else {
-        tree.create_node(currentNode, {id: last_id, text: text, type: typeOfFile});
+        data = {node: {parent: '#', id: last_id, text: text, type: typeOfFile}};
+        sendRequestForCreatingNewFileInDataBase(data);
+    } else if (currentNode.type != 'file') {
+        data = {node: {parent: currentNode.id, id: last_id, text: text, type: typeOfFile}};
+        sendRequestForCreatingNewFileInDataBase(data);
     }
-    tree.deselect_all();
-    tree.select_node(currentNode);
 }
 
 function editNode() {
