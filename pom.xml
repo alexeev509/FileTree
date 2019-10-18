@@ -60,7 +60,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -80,17 +79,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>org.apache.tomcat.maven</groupId>-->
-            <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-            <!--<version>2.2</version>-->
-            <!--<configuration>-->
-            <!--<port>8080</port>-->
-            <!--<url>http://localhost:8080/main</url>-->
-            <!--<server>TomcatServer</server>-->
-            <!--<path>/</path>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
@@ -130,31 +118,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>com.github.eirslett</groupId>-->
-            <!--<artifactId>frontend-maven-plugin</artifactId>-->
-            <!--<version>1.8.0</version>-->
-            <!--<configuration>-->
-            <!--<nodeVersion>v12.6.0</nodeVersion>-->
-            <!--<npmVersion>6.9.0</npmVersion>-->
-            <!--<installDirectory>target</installDirectory>-->
-            <!--<workingDirectory>src/main/webapp</workingDirectory>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>install node</id>-->
-            <!--<goals>-->
-            <!--<goal>install-node-and-npm</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--<execution>-->
-            <!--<id>npm install</id>-->
-            <!--<goals>-->
-            <!--<goal>npm</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
 
     </build>
