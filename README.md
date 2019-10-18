@@ -1,3 +1,18 @@
+Задание №2 <br>
+Клиент-Серверное (под tomcat) приложение.<br>
+Разработать страницу, отображающую в браузере древовидную структуру.<br>
+Функциональность:<br>
+∙  выделенный элемент должен быть отмечен отличной от других папок цветом иконки;<br>
+∙  реализовать «ленивую» загрузку папок, искусственно добавить задержку в 2 секунды при раскрытии папки, задав такой папке иконку загрузки, при этом должна быть возможность производить различные операции и навигацию по дереву;<br>
+∙  возможность добавления/изменения/удаления узлов дерева.<br>
+∙  перенос папки, включая вложенные под-папки в выбранную папку;<br>
+∙  опционально - организовать хранение данных в БД .<br>
+ 
+Задание будет оцениваться по следующим критериям:<br>
+∙  приятный и интуитивно понятный интерфейс приложения;<br>
+∙  краткий и понятный исходный код;<br>
+∙  использование паттернов.<br>
+
 For run project you must:
 1) You must run mvn package (at this time will start work plugin cargo for starting tomcat) 
 2) Then you have two ways: <br>
@@ -31,6 +46,7 @@ bd.driver=org.postgresql.Driver<br>
 it will be work with my database in "heroku"
 <br>
 DEFAULT PROPERTIES ARE USING HEROKU DB!<br>
+<h1>URL: http://localhost:8081/main </h1>
 
 <h1>Description</h1>
 This tree can do CRUD operations and you can move folders using drag and drop;<br>
